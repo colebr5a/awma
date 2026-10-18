@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<title>AWMA Weekly Newsletter</title>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Libre+Franklin:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bc-maroon: #8B1A1A;
+    --bc-gold: #C9A84C;
+    --bc-gold-light: #E8C97A;
+    --bc-dark: #1C1C1C;
+    --bc-cream: #FAF7F2;
+    --bc-warm-gray: #E8E2D9;
+    --bc-mid-gray: #9A9189;
+    --rule-thin: 0.5px solid var(--bc-warm-gray);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  @media print {
+    @page { size: 8.5in 11in; margin: 0; }
+    html, body { margin: 0; padding: 0; background: white !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    body { display: block !important; }
+    .page { width: 8.5in !important; height: 11in !important; max-height: 11in !important; overflow: hidden !important; box-shadow: none !important; page-break-after: always; page-break-inside: avoid; break-after: page; break-inside: avoid; margin: 0 !important; }
+    .page:last-child { page-break-after: auto; break-after: auto; }
+  }
+
+  body {
+    background: #D6CFC6;
+    font-family: 'Libre Franklin', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 16px;
+    gap: 24px;
+  }
+
+  .page {
+    background: var(--bc-cream);
+    width: 816px;
+    height: 1056px;
+    overflow: hidden;
+    box-shadow: 0 4px 40px rgba(0,0,0,0.22);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+  }
+
+  /* ── HEADER ── */
+  .header { background: var(--bc-maroon); flex-shrink: 0; }
+  .header-stripe { height: 5px; background: linear-gradient(90deg, var(--bc-gold) 0%, var(--bc-gold-light) 50%, var(--bc-gold) 100%); }
+  .header-inner { padding: 14px 36px 12px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+  .header-left { flex: 1; }
+  .header-kicker { font-family: 'Times New Roman', Times, serif; font-size: 8.5px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--bc-gold); margin-bottom: 5px; }
+  .header-title { font-family: 'Times New Roman', Times, serif; font-size: 30px; font-weight: 700; color: #fff; line-height: 1.05; letter-spacing: 1px; }
+  .header-title span { color: var(--bc-gold-light); font-weight: 400; font-style: italic; }
+  .header-meta { margin-top: 6px; display: flex; gap: 14px; align-items: center; }
+  .header-meta-item { font-family: 'Times New Roman', Times, serif; font-size: 8.5px; font-style: italic; letter-spacing: 1px; color: rgba(255,255,255,0.55); }
+  .header-meta-sep { color: var(--bc-gold); opacity: 0.5; }
+  .header-right { text-align: right; }
+  .header-date { font-family: 'Times New Roman', Times, serif; font-size: 17px; font-weight: 700; color: var(--bc-gold-light); line-height: 1.2; }
+  .header-issue { font-family: 'Times New Roman', Times, serif; font-size: 9px; font-style: italic; color: rgba(255,255,255,0.5); margin-bottom: 4px; }
+  .header-bottom-stripe { height: 2px; background: linear-gradient(90deg, transparent, var(--bc-gold) 30%, var(--bc-gold) 70%, transparent); opacity: 0.35; }
+
+  /* ── SLIM HEADER (Page 2) ── */
+  .header-slim { background: var(--bc-maroon); flex-shrink: 0; padding: 9px 36px; display: flex; align-items: center; justify-content: space-between; border-bottom: 3px solid var(--bc-gold); }
+  .header-slim-title { font-family: 'Times New Roman', Times, serif; font-size: 16px; font-weight: 700; color: #fff; letter-spacing: 1px; }
+  .header-slim-title span { color: var(--bc-gold-light); font-style: italic; font-weight: 400; }
+  .header-slim-right { font-family: 'Times New Roman', Times, serif; font-size: 9px; font-style: italic; color: rgba(255,255,255,0.5); }
+
+  /* ── TICKER ── */
+  .ticker-bar { background: var(--bc-dark); padding: 6px 36px; display: flex; gap: 22px; align-items: center; border-bottom: 1px solid #2a2a2a; flex-shrink: 0; }
+  .ticker-label { font-size: 7px; font-weight: 900; letter-spacing: 2.5px; text-transform: uppercase; color: var(--bc-gold); white-space: nowrap; }
+  .ticker-items { display: flex; gap: 20px; flex: 1; }
+  .ticker-item { display: flex; gap: 5px; align-items: baseline; white-space: nowrap; }
+  .ticker-name { font-size: 8.5px; font-weight: 700; color: rgba(255,255,255,0.55); }
+  .ticker-val { font-size: 10px; font-weight: 600; color: #fff; font-variant-numeric: tabular-nums; }
+  .ticker-chg { font-size: 8.5px; font-weight: 500; }
+  .up { color: #5DBF7F; } .dn { color: #E0614A; }
+  .ticker-divider { color: #444; font-size: 11px; }
+
+  /* ── SECTION LABEL ── */
+  .section-label { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .section-tag { font-size: 7px; font-weight: 900; letter-spacing: 2.5px; text-transform: uppercase; color: var(--bc-maroon); border-bottom: 1.5px solid var(--bc-maroon); padding-bottom: 2px; white-space: nowrap; }
+  .section-line { flex: 1; height: 0.5px; background: var(--bc-warm-gray); }
+
+  /* ── MARKET OVERVIEW (Page 1 top section) ── */
+  .market-overview { padding: 10px 36px 10px; border-bottom: var(--rule-thin); flex-shrink: 0; }
+  .market-overview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 28px; margin-top: 7px; }
+  .market-overview-left {}
+  .market-headline { font-family: 'EB Garamond', Georgia, serif; font-size: 19px; font-weight: 700; color: var(--bc-dark); line-height: 1.2; margin-bottom: 3px; }
+  .market-deck { font-family: 'EB Garamond', Georgia, serif; font-size: 10.5px; font-style: italic; color: var(--bc-mid-gray); line-height: 1.4; margin-bottom: 6px; }
+  .market-body { font-size: 8.5px; color: #3A3530; line-height: 1.6; }
+  .market-body p + p { margin-top: 5px; }
+  .market-overview-right { display: flex; flex-direction: column; gap: 6px; }
+
+  /* ── SNAP CARDS ── */
+  .snap-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 8px; }
+  .snap-card { background: #fff; border: var(--rule-thin); border-top: 2.5px solid var(--bc-maroon); padding: 5px 8px; border-radius: 0 0 2px 2px; }
+  .snap-name { font-size: 7px; font-weight: 700; color: var(--bc-mid-gray); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px; }
+  .snap-val { font-size: 13px; font-weight: 700; font-family: 'EB Garamond', Georgia, serif; color: var(--bc-dark); }
+  .snap-chg { font-size: 8px; font-weight: 600; margin-top: 1px; }
+  .snap-sub { font-size: 7px; color: var(--bc-mid-gray); margin-top: 1px; }
+
+  /* ── HEAT MAP ── */
+  .heatmap-section { flex-shrink: 0; }
+  .hm-row { border-bottom: 0.5px solid var(--bc-warm-gray); }
+  .hm-row.hm-alt { background: #F5F2EE; }
+  .hm-sector { font-family: 'Libre Franklin', sans-serif; font-size: 8px; font-weight: 700; color: var(--bc-dark); padding: 4px 8px; white-space: nowrap; }
+  .hm-cell { font-family: 'Libre Franklin', sans-serif; font-size: 8px; font-weight: 700; padding: 4px 5px; text-align: center; border-radius: 2px; }
+  .hm-pos { color: #1E6B3A; background: #E2F0E8; }
+  .hm-neg { color: #7A1010; background: #F5E0E0; }
+  .hm-neu { color: #7A5500; background: #FDF3DC; }
+  .hm-note { font-size: 7px; color: var(--bc-mid-gray); font-style: italic; padding: 4px 8px; }
+
+  /* ── PAGE 1: TWO-COL LOWER ── */
+  .page1-lower { flex: 1; display: grid; grid-template-columns: 1fr 1fr; border-top: var(--rule-thin); min-height: 0; overflow: hidden; }
+  .page1-col { display: flex; flex-direction: column; padding: 10px 36px 10px; min-height: 0; overflow: hidden; }
+  .page1-col:first-child { border-right: var(--rule-thin); padding-right: 16px; }
+  .page1-col:last-child { padding-left: 16px; }
+
+  /* ── TRACK SECTION (AM / WM) ── */
+  .track-headline { font-family: 'EB Garamond', Georgia, serif; font-size: 13.5px; font-weight: 700; color: var(--bc-dark); line-height: 1.2; margin-bottom: 3px; }
+  .track-deck { font-family: 'EB Garamond', Georgia, serif; font-size: 9.5px; font-style: italic; color: var(--bc-mid-gray); line-height: 1.4; margin-bottom: 5px; }
+  .track-body { font-size: 8.5px; color: #3A3530; line-height: 1.6; }
+  .track-body p + p { margin-top: 4px; }
+
+  /* ── INSIGHT PROGRAMS PILL (compact) ── */
+  .programs-bar { background: #fff; border: var(--rule-thin); border-top: 2px solid var(--bc-gold); padding: 6px 10px; border-radius: 0 0 2px 2px; margin-top: 8px; flex-shrink: 0; }
+  .programs-bar-label { font-size: 7px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase; color: var(--bc-gold); margin-bottom: 6px; }
+  .program-pill-row { display: flex; flex-wrap: wrap; gap: 4px; }
+  .program-pill { font-size: 7.5px; font-weight: 600; padding: 3px 8px; border-radius: 20px; white-space: nowrap; display: inline-flex; align-items: center; gap: 4px; }
+  .pill-open { background: #E2F0E8; color: #1E6B3A; }
+  .pill-soon { background: #FDF3DC; color: #7A5500; }
+  .pill-closed { background: #F0EDED; color: #9A9189; }
+  .pill-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+  .pill-open .pill-dot { background: #1E6B3A; }
+  .pill-soon .pill-dot { background: #C9A84C; }
+  .pill-closed .pill-dot { background: #C0B8B0; }
+
+  /* ── PAGE 2: INDUSTRY BRIEFS ── */
+  .briefs { padding: 18px 36px 16px; border-bottom: var(--rule-thin); flex-shrink: 0; }
+  .briefs-grid { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 0 24px; margin-top: 10px; }
+  .brief-item { border-left: 2.5px solid var(--bc-gold); padding-left: 12px; }
+  .brief-kicker { font-size: 7px; font-weight: 700; color: var(--bc-maroon); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 5px; }
+  .brief-head { font-family: 'EB Garamond', Georgia, serif; font-size: 14px; font-weight: 700; color: var(--bc-dark); line-height: 1.25; margin-bottom: 7px; }
+  .brief-body { font-size: 9.5px; color: #4A4540; line-height: 1.68; }
+
+  /* ── PAGE 2: GLOBAL MACRO ── */
+  .geo-section { padding: 12px 36px 8px; flex: 1; display: flex; flex-direction: column; min-height: 0; overflow: hidden; position: relative; }
+  .geo-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0 24px; margin-top: 8px; flex: 1; min-height: 0; overflow: hidden; }
+  .geo-col { display: flex; flex-direction: column; overflow: hidden; }
+  .geo-region { font-size: 7.5px; font-weight: 700; color: var(--bc-maroon); text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 5px; display: flex; align-items: center; gap: 6px; }
+  .geo-flag { font-size: 13px; }
+  .geo-head { font-family: 'EB Garamond', Georgia, serif; font-size: 12px; font-weight: 700; color: var(--bc-dark); line-height: 1.25; margin-bottom: 6px; }
+  .geo-body { font-size: 8px; color: #4A4540; line-height: 1.55; flex: 1; overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 10; }
+  .geo-tag { display: block; margin-top: 6px; font-size: 7px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; padding: 3px 8px; border-radius: 2px; flex-shrink: 0; }
+  .geo-tag.risk-high { background: #F5E0E0; color: #7A1010; }
+  .geo-tag.risk-med  { background: #FDF3DC; color: #7A5500; }
+  .geo-tag.risk-low  { background: #E2F0E8; color: #1E6B3A; }
+
+  /* ── PAGE 2: OPEN PROGRAMS FULL SECTION ── */
+  .programs-section { padding: 10px 36px 8px; border-top: 1px solid var(--bc-warm-gray); flex-shrink: 0; overflow: hidden; }
+  .programs-full-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 10px; }
+  .prog-card { background: #fff; border: var(--rule-thin); padding: 8px 10px; border-radius: 2px; display: flex; flex-direction: column; gap: 3px; }
+  .prog-card-firm { font-size: 7.5px; font-weight: 700; color: var(--bc-mid-gray); text-transform: uppercase; letter-spacing: 0.8px; }
+  .prog-card-name { font-family: 'EB Garamond', Georgia, serif; font-size: 11px; font-weight: 700; color: var(--bc-dark); line-height: 1.2; }
+  .prog-card-deadline { font-size: 7.5px; color: #4A4540; margin-top: 2px; }
+  .prog-card-deadline strong { color: var(--bc-maroon); }
+  .prog-card-track { font-size: 7px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; color: var(--bc-mid-gray); }
+  .prog-card-status { font-size: 7px; font-weight: 700; padding: 2px 6px; border-radius: 10px; align-self: flex-start; margin-top: 2px; }
+  .status-open { background: #E2F0E8; color: #1E6B3A; }
+  .status-soon { background: #FDF3DC; color: #7A5500; }
+
+  /* ── FOOTER ── */
+  .footer { background: var(--bc-dark); padding: 8px 36px; display: flex; justify-content: space-between; align-items: center; border-top: 2.5px solid var(--bc-maroon); flex-shrink: 0; gap: 16px; }
+  .footer-left { font-size: 7.5px; color: rgba(255,255,255,0.35); line-height: 1.6; }
+  .footer-left strong { color: rgba(255,255,255,0.6); font-weight: 600; }
+  .footer-right { font-size: 7.5px; color: rgba(255,255,255,0.35); text-align: right; line-height: 1.6; }
+  .footer-right a { color: var(--bc-gold); text-decoration: none; }
+  .footer-divider { width: 1px; height: 26px; background: rgba(255,255,255,0.1); flex-shrink: 0; }
+  .page-num { font-size: 7px; color: rgba(255,255,255,0.3); font-style: italic; white-space: nowrap; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════ PAGE 1 ═══════════════════ -->
+<div class="page">
+
+  <div class="header">
+    <div class="header-stripe"></div>
+    <div class="header-inner">
+      <div class="header-left">
+        <div class="header-kicker">Asset &amp; Wealth Management Association · Boston College</div>
+        <div class="header-title">AWMA <span>Weekly</span></div>
+        <div class="header-meta">
+          <span class="header-meta-item">Carroll School of Management</span>
+          <span class="header-meta-sep">·</span>
+          <span class="header-meta-item">Member Newsletter</span>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="header-issue">Issue #2 · Vol. 1</div>
+        <div class="header-date">Week of<br>Oct 13, 2026</div>
+      </div>
+    </div>
+    <div class="header-bottom-stripe"></div>
+  </div>
+
+  <div class="ticker-bar">
+    <span class="ticker-label">Markets</span>
+    <div class="ticker-items">
+      <div class="ticker-item"><span class="ticker-name">S&amp;P 500</span><span class="ticker-val">5,815</span><span class="ticker-chg up">+1.0% wk</span></div>
+      <span class="ticker-divider">|</span>
+      <div class="ticker-item"><span class="ticker-name">NASDAQ</span><span class="ticker-val">18,342</span><span class="ticker-chg up">+1.1% wk</span></div>
+      <span class="ticker-divider">|</span>
+      <div class="ticker-item"><span class="ticker-name">10-YR</span><span class="ticker-val">4.10%</span><span class="ticker-chg dn">+14 bps wk</span></div>
+      <span class="ticker-divider">|</span>
+      <div class="ticker-item"><span class="ticker-name">VIX</span><span class="ticker-val">20.9</span><span class="ticker-chg dn">elevated</span></div>
+      <span class="ticker-divider">|</span>
+      <div class="ticker-item"><span class="ticker-name">DXY</span><span class="ticker-val">103.0</span><span class="ticker-chg up">+0.5% wk</span></div>
+      <span class="ticker-divider">|</span>
+      <div class="ticker-item"><span class="ticker-name">Gold</span><span class="ticker-val">$2,656</span><span class="ticker-chg up">+1.2% wk</span></div>
+    </div>
+  </div>
+
+  <!-- MARKET OVERVIEW -->
+  <div class="market-overview">
+    <div class="section-label"><span class="section-tag">Market Overview</span><div class="section-line"></div></div>
+    <div class="market-overview-grid">
+      <div class="market-overview-left">
+        <div class="market-headline">Q3 Earnings Kick Off Strong — But the Bond Market Is the Real Story</div>
+        <div class="market-deck">Equities posted a solid week as big bank earnings impressed, while a sharp Treasury selloff sent the 10-year to 4.10% — its highest level since early August.</div>
+        <div class="market-body">
+          <p>Q3 2026 earnings season opened with a bang. JPMorgan reported EPS of $4.37 vs. $4.01 expected, driven by strong investment banking fees (+31% YoY) and resilient net interest income. Wells Fargo beat on NII guidance; BlackRock's AUM climbed to a record $11.5T on equity market gains and net inflows. The early read: corporate America remains in solid shape, but management teams are universally flagging elevated macro uncertainty heading into year-end.</p>
+          <p>The bigger market story, however, was Treasuries. The 10-year yield spiked 14 basis points on the week to 4.10% — partly on strong CPI data (headline +2.4% YoY, above the 2.3% estimate) and partly on rising term premium as investors demanded more compensation for holding long-duration debt. The move rattled rate-sensitive sectors but paradoxically supported financials, which benefit from a steeper yield curve. Fed Chair Powell reiterated a data-dependent stance; markets are now pricing just one additional 25bp cut before year-end.</p>
+        </div>
+      </div>
+      <div class="market-overview-right">
+        <div class="snap-grid">
+          <div class="snap-card">
+            <div class="snap-name">Equity</div>
+            <div class="snap-val">5,815</div>
+            <div class="snap-chg up">+20.3% YTD</div>
+            <div class="snap-sub">Near all-time highs</div>
+          </div>
+          <div class="snap-card">
+            <div class="snap-name">10-Yr Treasury</div>
+            <div class="snap-val">4.10%</div>
+            <div class="snap-chg dn">+14 bps wk</div>
+            <div class="snap-sub">Highest since Aug 2026</div>
+          </div>
+          <div class="snap-card">
+            <div class="snap-name">Volatility</div>
+            <div class="snap-val">20.9</div>
+            <div class="snap-chg dn">Elevated</div>
+            <div class="snap-sub">Above 20-day avg of 17.3</div>
+          </div>
+          <div class="snap-card">
+            <div class="snap-name">Macro Watch</div>
+            <div class="snap-val">4.75%</div>
+            <div class="snap-chg">Fed funds rate</div>
+            <div class="snap-sub">CPI 2.4% · 1 cut priced</div>
+          </div>
+        </div>
+
+        <!-- HEAT MAP (compact) -->
+        <table style="width:100%;border-collapse:collapse;margin-top:8px;border:0.5px solid var(--bc-warm-gray);">
+          <thead>
+            <tr style="background:#1C1C1C;">
+              <th style="font-family:Arial;font-size:6.5px;font-weight:700;color:#C9A84C;letter-spacing:1.2px;text-transform:uppercase;padding:4px 7px;text-align:left;width:22%;">Sector</th>
+              <th style="font-family:Arial;font-size:6.5px;font-weight:700;color:rgba(255,255,255,0.5);letter-spacing:1px;text-transform:uppercase;padding:4px 5px;text-align:center;">1D</th>
+              <th style="font-family:Arial;font-size:6.5px;font-weight:700;color:rgba(255,255,255,0.5);letter-spacing:1px;text-transform:uppercase;padding:4px 5px;text-align:center;">1W</th>
+              <th style="font-family:Arial;font-size:6.5px;font-weight:700;color:rgba(255,255,255,0.5);letter-spacing:1px;text-transform:uppercase;padding:4px 5px;text-align:center;">YTD</th>
+              <th style="font-family:Arial;font-size:6.5px;font-weight:700;color:rgba(255,255,255,0.5);letter-spacing:1px;text-transform:uppercase;padding:4px 5px;text-align:left;">Note</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="hm-row"><td class="hm-sector">Financials</td><td class="hm-cell hm-pos">+1.4%</td><td class="hm-cell hm-pos">+2.8%</td><td class="hm-cell hm-pos">+24.1%</td><td class="hm-note">JPM, WFC, BLK all beat Q3</td></tr>
+            <tr class="hm-row hm-alt"><td class="hm-sector">Technology</td><td class="hm-cell hm-pos">+0.8%</td><td class="hm-cell hm-pos">+1.2%</td><td class="hm-cell hm-pos">+18.4%</td><td class="hm-note">AI capex theme intact; NVDA +4%</td></tr>
+            <tr class="hm-row"><td class="hm-sector">Health Care</td><td class="hm-cell hm-neg">-0.6%</td><td class="hm-cell hm-neg">-0.9%</td><td class="hm-cell hm-pos">+6.2%</td><td class="hm-note">Election uncertainty weighing</td></tr>
+            <tr class="hm-row hm-alt"><td class="hm-sector">Real Estate</td><td class="hm-cell hm-neg">-1.8%</td><td class="hm-cell hm-neg">-3.2%</td><td class="hm-cell hm-neg">-4.1%</td><td class="hm-note">Rate spike hurts REITs hard</td></tr>
+            <tr class="hm-row"><td class="hm-sector">Energy</td><td class="hm-cell hm-pos">+0.7%</td><td class="hm-cell hm-pos">+1.6%</td><td class="hm-cell hm-pos">+9.3%</td><td class="hm-note">Middle East tensions supportive</td></tr>
+            <tr class="hm-row hm-alt"><td class="hm-sector">Utilities</td><td class="hm-cell hm-neg">-1.2%</td><td class="hm-cell hm-neg">-2.6%</td><td class="hm-cell hm-pos">+11.0%</td><td class="hm-note">Rate-sensitive; AI power demand offsets</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- TWO-COL: AM + WM -->
+  <div class="page1-lower">
+
+    <!-- AM COLUMN -->
+    <div class="page1-col">
+      <div class="section-label"><span class="section-tag">Asset Management</span><div class="section-line"></div></div>
+      <div class="track-headline">BlackRock Hits $11.5T AUM — A Record Built on Private Markets and ETFs</div>
+      <div class="track-deck">Q3 results confirm the firm's diversification strategy is working even as markets grow uncertain about rates and the election.</div>
+      <div class="track-body">
+        <p>BlackRock reported Q3 2026 results this week with total AUM hitting a record $11.5 trillion — up from $10.6T a year ago. Net inflows of $221B were the highest in two years, driven by ETF demand ($102B) and continued institutional allocation to private markets infrastructure funds. The GIP acquisition has paid off: infrastructure AUM now sits at $170B, and the firm is pitching a $30B infrastructure equity fund targeting sovereign wealth funds and pension plans.</p>
+        <p>For AWMA members, the broader lesson is in portfolio construction: institutions are increasingly treating infrastructure and private credit as a "fourth asset class" alongside equities, fixed income, and cash. With traditional 60/40 portfolios facing headwinds from both high rates and elevated equity valuations, allocators are using real assets as a diversifier. In interviews, be prepared to discuss why private markets have grown so rapidly and what liquidity trade-offs investors accept in exchange for the illiquidity premium.</p>
+      </div>
+      <!-- Compact open programs pill -->
+      <div class="programs-bar">
+        <div class="programs-bar-label">⬦ Open Applications — AM Track</div>
+        <div class="program-pill-row">
+          <span class="program-pill pill-open"><span class="pill-dot"></span>MS Early Insights IM — Due Oct 30</span>
+          <span class="program-pill pill-soon"><span class="pill-dot"></span>Vanguard North Star — Watch Winter</span>
+          <span class="program-pill pill-soon"><span class="pill-dot"></span>Blackstone Future Leaders — Watch Winter</span>
+          <span class="program-pill pill-closed"><span class="pill-dot"></span>GS Emerging Leaders — Closed</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- WM COLUMN -->
+    <div class="page1-col">
+      <div class="section-label"><span class="section-tag">Wealth Management</span><div class="section-line"></div></div>
+      <div class="track-headline">Rising Rates Force Advisors to Revisit Client Bond Allocations in Real Time</div>
+      <div class="track-deck">The 10-year yield's sharp move to 4.10% has real implications for client portfolios — and is generating some of the most instructive WM conversations of the year.</div>
+      <div class="track-body">
+        <p>The Treasury selloff this week caught many wealth management clients off-guard. Investors who shifted into longer-duration bonds earlier in 2026 — expecting rate cuts — are now sitting on mark-to-market losses as the 10-year rises. This has triggered a wave of client calls at major wealth platforms, with advisors at Morgan Stanley, Merrill, and Raymond James all reporting elevated inbound volume around bond allocation questions.</p>
+        <p>The practical WM lesson: duration risk is portfolio risk, and client communication around it matters as much as the underlying positioning decision. Wells Fargo Wealth Management published a client note this week recommending a barbell approach — holding shorter-duration Treasuries alongside equities rather than extending duration in anticipation of cuts. For AWMA members, understanding how to explain bond math (price moves inversely with yield, duration measures sensitivity) in plain language is a core advisor competency. Expect this topic to come up in interviews — "walk me through how you'd explain the bond sell-off to a client" is a live question.</p>
+      </div>
+      <!-- Compact open programs pill -->
+      <div class="programs-bar">
+        <div class="programs-bar-label">⬦ Open Applications — WM Track</div>
+        <div class="program-pill-row">
+          <span class="program-pill pill-open"><span class="pill-dot"></span>MS Early Insights WM — Due Oct 30</span>
+          <span class="program-pill pill-open"><span class="pill-dot"></span>RJ Sophomore Showcase — Open</span>
+          <span class="program-pill pill-soon"><span class="pill-dot"></span>UBS Tomorrow's Talent — Watch Jan</span>
+          <span class="program-pill pill-soon"><span class="pill-dot"></span>JPM Sophomore Edge — Watch Fall</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="footer-left"><strong>AWMA — Asset &amp; Wealth Management Association</strong><br>Boston College · Carroll School of Management · For member use only</div>
+    <div class="footer-divider"></div>
+    <div class="page-num">Page 1 of 2</div>
+    <div class="footer-divider"></div>
+    <div class="footer-right">Questions: <a href="mailto:awmgmta@gmail.com">awmgmta@gmail.com</a></div>
+  </div>
+
+</div><!-- /page 1 -->
+
+
+<!-- ═══════════════════ PAGE 2 ═══════════════════ -->
+<div class="page">
+
+  <div class="header-slim">
+    <div class="header-slim-title">AWMA <span>Weekly</span> — Oct 13, 2026</div>
+    <div class="header-slim-right">Issue #2 · Vol. 1 · Carroll School of Management · Boston College</div>
+  </div>
+
+  <!-- INDUSTRY BRIEFS -->
+  <div class="briefs">
+    <div class="section-label"><span class="section-tag">Industry Briefs</span><div class="section-line"></div></div>
+    <div class="briefs-grid">
+
+      <div class="brief-item">
+        <div class="brief-kicker">Asset Management</div>
+        <div class="brief-head">Q3 Earnings Signal Private Markets Are Now Core, Not Alternative</div>
+        <div class="brief-body">BlackRock's record $11.5T AUM and $221B in net inflows confirm that institutional allocators have decisively shifted toward private markets. Infrastructure, private credit, and real assets are no longer treated as alternatives — they are structural portfolio positions. Ares Management and Apollo also reported strong quarters, with each firm highlighting robust demand for investment-grade private credit from insurance companies and pension funds. The trend has implications for students: AM roles increasingly require comfort with illiquid structures, NAV calculations, and the mechanics of drawdown funds — concepts that were once the domain of specialized alternatives teams but are now mainstream in multi-asset portfolios.</div>
+      </div>
+
+      <div class="brief-item">
+        <div class="brief-kicker">Wealth Management</div>
+        <div class="brief-head">Morgan Stanley Wealth Reports $6.2T in Client Assets — Advisor Productivity at Record</div>
+        <div class="brief-body">Morgan Stanley's Q3 earnings highlighted the continued strength of its Wealth Management segment, which reported $6.2T in client assets and net new assets of $64B. Advisor productivity — revenue per advisor — hit an all-time high as the firm's technology platform investments paid off in client acquisition and retention. CEO Ted Pick emphasized that Morgan Stanley's differentiated model — integrating wealth management with investment banking and asset management — is a structural competitive advantage that peers cannot easily replicate. For WM-track members, this is useful context for firm-specific interview prep: MS's pitch is that it's not just an advisory firm, but an integrated financial services company that gives advisors proprietary deal flow and research that independent or bank-affiliated competitors cannot match.</div>
+      </div>
+
+      <div class="brief-item">
+        <div class="brief-kicker">Private Markets</div>
+        <div class="brief-head">Apollo Targets $1.5T AUM by 2029 — Retirement Capital Is the Engine</div>
+        <div class="brief-body">Apollo Global Management reiterated its $1.5T AUM target by 2029 (from ~$733B today) at its investor day this week, outlining a strategy centered on retirement capital — specifically, using its Athene insurance subsidiary to source $100B+ in annual origination capacity for investment-grade private credit. The firm argued that the traditional bank lending model is structurally retreating due to Basel III capital requirements, leaving a $40T+ gap that alternative asset managers are positioned to fill. For students targeting private credit or alternatives roles, Apollo's model is worth studying closely: it shows how insurance float, origination platforms, and credit expertise combine into a scalable alternatives business that is increasingly challenging traditional banking.</div>
+      </div>
+
+      <div class="brief-item">
+        <div class="brief-kicker">Macro &amp; Policy</div>
+        <div class="brief-head">CPI Comes in Hot — One More Reason the Fed Is in No Rush</div>
+        <div class="brief-body">September CPI surprised to the upside at +2.4% year-over-year (vs. +2.3% expected), with core CPI holding at +3.3%. The data triggered a sharp selloff in Treasuries — the 10-year rose 14 bps on the week — and caused futures markets to reprice the expected pace of Fed rate cuts. Markets are now pricing just one additional 25bp cut before year-end, versus two cuts that were priced a month ago. The "higher for longer" dynamic that defined 2025 is showing signs of re-emerging. For members, the key interview concept is the difference between what the Fed wants (inflation at 2%) and what the market prices (the path to get there). Right now, those two things are diverging — and that divergence is driving most of the volatility in rates and rate-sensitive equities.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- GLOBAL MACRO -->
+  <div class="geo-section">
+    <div class="section-label"><span class="section-tag">Global Macro &amp; Geopolitics</span><div class="section-line"></div></div>
+    <div class="geo-grid">
+
+      <div class="geo-col">
+        <div class="geo-region"><span class="geo-flag">🇺🇸</span> U.S. · Election &amp; Policy</div>
+        <div class="geo-head">Markets Are Beginning to Price Election Outcomes — Financials and Energy Lead</div>
+        <div class="geo-body">With the election three weeks away, markets are pricing scenario outcomes by sector. Financials have outperformed on expectations of lighter regulatory oversight; health care has lagged on drug pricing uncertainty; energy has quietly added a political risk premium. For students, election-driven sector rotation is a live portfolio construction challenge: how do you position for political uncertainty without making a directional bet? The answer most PMs give — own quality, reduce duration, stay diversified — is an important interview talking point on risk management when macro is uncertain.</div>
+        <span class="geo-tag risk-med">~ Watch Closely</span>
+      </div>
+
+      <div class="geo-col">
+        <div class="geo-region"><span class="geo-flag">🇨🇳</span> China · Stimulus &amp; Growth</div>
+        <div class="geo-head">China's Stimulus Package Disappoints — Emerging Market Allocators Reassess</div>
+        <div class="geo-body">China's NDRC unveiled its long-awaited fiscal stimulus package this week — and markets sold off hard on the lack of new specifics. The package offered broad language about infrastructure and consumption support but no new spending figures beyond what was announced in September. Chinese equities fell 7% on the week, erasing much of the September rally. For AM students, this is instructive: stimulus announcements move markets on expectations, not results. The difference between policy announcement risk and implementation risk is a nuanced concept that separates strong EM analysts from weaker ones in interviews.</div>
+        <span class="geo-tag risk-high">⚠ Elevated Risk</span>
+      </div>
+
+      <div class="geo-col">
+        <div class="geo-region"><span class="geo-flag">🇪🇺</span> Europe · ECB &amp; Credit</div>
+        <div class="geo-head">ECB Cuts Again — But European Credit Spreads Widen on Growth Concerns</div>
+        <div class="geo-body">The ECB cut its deposit rate 25bp to 3.25% — its third cut of 2026 — citing softening eurozone growth. Germany's manufacturing PMI held in contraction at 40.6; France reported weak industrial output. Despite the cut, European high-yield credit spreads widened ~30bps on growth fears, a live example of how policy and credit can diverge: cuts should tighten spreads, but when recession risk dominates, credit sells off regardless. The ECB-Fed divergence is also driving FX volatility — EUR/USD fell toward 1.09 — adding complexity for global fixed income PMs.</div>
+        <span class="geo-tag risk-med">~ Monitor</span>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- OPEN PROGRAMS FULL SECTION -->
+  <div class="programs-section">
+    <div class="section-label"><span class="section-tag">Sophomore Insight Programs — Application Tracker</span><div class="section-line"></div></div>
+    <div class="programs-full-grid">
+
+      <div class="prog-card">
+        <div class="prog-card-firm">Morgan Stanley</div>
+        <div class="prog-card-name">Early Insights Program</div>
+        <div class="prog-card-track">WM &amp; IM Tracks</div>
+        <div class="prog-card-deadline"><strong>Due Oct 30, 2026</strong> · Virtual, Nov 2 &amp; 5</div>
+        <div class="prog-card-status status-open">Open Now</div>
+      </div>
+
+      <div class="prog-card">
+        <div class="prog-card-firm">Raymond James</div>
+        <div class="prog-card-name">Sophomore Showcase</div>
+        <div class="prog-card-track">Wealth Management</div>
+        <div class="prog-card-deadline"><strong>Open</strong> · Dec 2026 &amp; Spring sessions</div>
+        <div class="prog-card-status status-open">Open Now</div>
+      </div>
+
+      <div class="prog-card">
+        <div class="prog-card-firm">Vanguard</div>
+        <div class="prog-card-name">North Star Program</div>
+        <div class="prog-card-track">Asset Management</div>
+        <div class="prog-card-deadline">Expected <strong>Winter 2027</strong> · Watch for apps</div>
+        <div class="prog-card-status status-soon">Coming Soon</div>
+      </div>
+
+      <div class="prog-card">
+        <div class="prog-card-firm">UBS</div>
+        <div class="prog-card-name">Tomorrow's Talent</div>
+        <div class="prog-card-track">AM &amp; WM</div>
+        <div class="prog-card-deadline">Expected <strong>January 2027</strong> · Virtual accelerator</div>
+        <div class="prog-card-status status-soon">Coming Soon</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-left"><strong>AWMA — Asset &amp; Wealth Management Association</strong><br>Boston College · Carroll School of Management · For member use only</div>
+    <div class="footer-divider"></div>
+    <div class="page-num">Page 2 of 2</div>
+    <div class="footer-divider"></div>
+    <div class="footer-right">Questions: <a href="mailto:awmgmta@gmail.com">awmgmta@gmail.com</a></div>
+  </div>
+
+</div><!-- /page 2 -->
+
+</body>
+</html>
